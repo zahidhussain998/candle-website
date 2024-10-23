@@ -1,16 +1,19 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
 import Cart from "../Cart/Cart";
 import TransitionLink from "../TransitionLink";
 import { motion } from "framer-motion";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
-
-export default function Navbar () {
-  
+export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -30,7 +33,7 @@ export default function Navbar () {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: -10 }}
               className="flex items-center py-1"
@@ -48,7 +51,7 @@ export default function Navbar () {
                 { label: "SCENTICKS", path: "/" },
                 { label: "ROOM & LINEN MISTS", path: "/" },
                 { label: "FRAGRANCES", path: "/" },
-                { label: "PILLAR CANDLES", path: "/products/2" },
+                { label: "PILLAR CANDLES", path: "/products/1" },
                 { label: "NEW & TRENDING", path: "/" },
               ].map((item, index) => (
                 <motion.div
@@ -70,20 +73,16 @@ export default function Navbar () {
 
             {/* Right Icons */}
             <div className="flex items-center gap-4 text-gray-700">
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="p-2 hover:bg-gray-100 rounded-full"
               >
                 <SearchIcon />
               </motion.button>
-              
-              <motion.div whileHover={{ scale: 1.1 }}>
-                <Link to="/products/:id" className="p-2 hover:bg-gray-100 rounded-full">
-                  <PersonIcon />
-                </Link>
-              </motion.div>
-              
+
+             
+
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -92,9 +91,15 @@ export default function Navbar () {
               >
                 <ShoppingCartOutlinedIcon />
               </motion.button>
-            </div>
+              <motion.div whileHover={{ scale: 1.1 }} className="space-x-5 bg-slate-900 rounded-full py-3 px-7 text-white">
+                <SignedOut>
+                  <SignInButton />
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </motion.div>
 
-            {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               className="md:hidden p-2"
@@ -115,6 +120,12 @@ export default function Navbar () {
                 />
               </svg>
             </motion.button>
+            </div>
+
+            {/* Mobile Menu Button */}
+
+
+           
           </div>
         </div>
 
@@ -150,4 +161,4 @@ export default function Navbar () {
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
-};
+}

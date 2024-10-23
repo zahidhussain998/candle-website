@@ -123,7 +123,7 @@ function List({selected, catId, maxPrice}) {
   }
 />
             <Link to={`/product/${item.id}`}>{item.title || item.name}</Link>
-            <p className="font-bold">{item.price}</p>
+            <p className="font-bold">Rs{item.price}</p>
           </div>
         ))}
       </div>

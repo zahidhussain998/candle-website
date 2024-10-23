@@ -50,7 +50,7 @@ function Productsmain() {
           {Array.from({ length: 10 }).map((_, index) => (
             <CarouselItem key={index} className="md:basis-full lg:basis-full overflow-hidden">
               <div className="p-1">
-                                <Link to={`/products/2`}>
+                                <Link to={`/products/1`}>
                                     <img 
                                         className='w-full h-[400px] object-cover'
                                         src={data[index % data.length].image1}

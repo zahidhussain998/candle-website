@@ -49,7 +49,7 @@ function CustomProductCarousel({ type = "featured" }) {
               <div className="flex flex-col items-center">
               <TransitionLink 
   key={product.documentId}
-  to={`/products/2`} 
+  to={`/products/1`} 
   label={
     <img
       src={`${import.meta.env.VITE_APP_UPLOAD_URL}${product.image1[0].formats.large.url}`}
